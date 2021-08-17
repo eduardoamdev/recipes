@@ -1,9 +1,7 @@
 const User = require("../models/User");
 
 let verifyRecipeOwner = async (userId, recipeId) => {
-  let users = await User.find().then((allUsers) => {
-    return allUsers;
-  });
+  let users = await User.find();
 
   let owner = {};
 

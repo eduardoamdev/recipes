@@ -28,9 +28,7 @@ router.get("/user", async (req, res) => {
 router.get("/user/:userId", async (req, res) => {
   let myToken = req.headers.token;
 
-  let user = await tokenValidation(res, myToken).then((userFound) => {
-    return userFound;
-  });
+  let user = await tokenValidation(res, myToken);
 
   if (!user) {
     return;
@@ -98,9 +96,7 @@ router.get("/searchRecipe/:recipeName", async (req, res) => {
 
   let name = req.params.recipeName;
 
-  let recipes = await Recipe.find({ name: name }).then((foundRecipe) => {
-    return foundRecipe;
-  });
+  let recipes = await Recipe.find({ name: name });
 
   if (recipes.length != 0) {
     res.send({
@@ -129,9 +125,7 @@ router.get("/recipes/:recipeName", async (req, res) => {
 
   let name = req.params.recipeName;
 
-  let foundedRecipes = await Recipe.find({ name: name }).then((foundRecipe) => {
-    return foundRecipe;
-  });
+  let foundedRecipes = await Recipe.find({ name: name });
 
   let userRecipes = user.recipes;
   let selectedRecipes = [];
@@ -177,16 +171,14 @@ router.post("/followUser/:userId", async (req, res) => {
   if (alreadyFollowing == false) {
     await User.findByIdAndUpdate(user._id, {
       $push: { following: followedUserId },
-    }).then((foundUser) => {});
+    });
   } else if (alreadyFollowing == true) {
     await User.findByIdAndUpdate(user._id, {
       $pull: { following: followedUserId },
-    }).then((foundUser) => {});
+    });
   }
 
-  let followedUser = await User.findById(followedUserId).then((followed) => {
-    return followed;
-  });
+  let followedUser = await User.findById(followedUserId);
 
   res.send({ user: followedUser, auth: true });
 });
@@ -213,11 +205,11 @@ router.post("/favouriteRecipe/:recipeId", async (req, res) => {
   if (alreadyFavourite == false) {
     await User.findByIdAndUpdate(user._id, {
       $push: { favourites: favouriteId },
-    }).then((recipe) => {});
+    });
   } else if (alreadyFavourite == true) {
     await User.findByIdAndUpdate(user._id, {
       $pull: { favourites: favouriteId },
-    }).then((recipe) => {});
+    });
   }
 
   res.redirect(`/recipe/${favouriteId}`);
@@ -271,17 +263,11 @@ router.post("/newRecipe", async (req, res) => {
     ingredients: recipeIngredients,
     preparation: recipePreparation,
     creator: user._id,
-  })
-    .then((newRecipe) => {
-      return newRecipe;
-    })
-    .catch((error) => {
-      res.send(error);
-    });
+  });
 
   await User.findByIdAndUpdate(user._id, {
     $push: { recipes: recipe._id },
-  }).then((updatedUser) => {});
+  });
 
   res.redirect(`/recipe/${recipe._id}`);
 });
@@ -318,11 +304,7 @@ router.post("/updateRecipe/:recipeId", async (req, res) => {
     country: recipeCountry,
     ingredients: recipeIngredients,
     preparation: recipePreparation,
-  })
-    .then((updatedRecipe) => {})
-    .catch((error) => {
-      res.send(error);
-    });
+  });
 
   res.redirect(`/recipe/${recipeId}`);
 });
@@ -349,19 +331,13 @@ router.delete("/deleteRecipe/:recipeId", async (req, res) => {
     return;
   }
 
-  let recipe = await Recipe.findByIdAndDelete(recipeId).then(
-    (deletedRecipe) => {
-      return deletedRecipe;
-    }
-  );
+  let recipe = await Recipe.findByIdAndDelete(recipeId);
 
   await User.findByIdAndUpdate(user._id, {
     $pull: { recipes: recipe._id },
-  }).then((updatedUser) => {});
-
-  let users = await User.find().then((allUsers) => {
-    return allUsers;
   });
+
+  let users = await User.find();
 
   users.forEach(async (eachUser) => {
     let foundFavourite = eachUser.favourites.find((favourite) => {
@@ -370,7 +346,7 @@ router.delete("/deleteRecipe/:recipeId", async (req, res) => {
     if (foundFavourite != undefined) {
       await User.findByIdAndUpdate(eachUser._id, {
         $pull: { favourites: recipe._id },
-      }).then((updatedUser) => {});
+      });
     }
   });
 
@@ -405,11 +381,12 @@ router.put("/changePassword", async (req, res) => {
     return;
   }
 
-  let userWithPassword = await User.findById(user._id).then((foundUser) => {
-    return foundUser;
-  });
+  let userWithPassword = await User.findById(user._id);
 
-  let currentPasswordIsValid = await bcrypt.compare(currentPassword, userWithPassword.password);
+  let currentPasswordIsValid = await bcrypt.compare(
+    currentPassword,
+    userWithPassword.password
+  );
 
   if (currentPasswordIsValid == false) {
     res.send({
@@ -427,7 +404,7 @@ router.put("/changePassword", async (req, res) => {
     recipes: user.recipes,
     favourites: user.favourites,
     following: user.following,
-  })
+  });
 
   res.send({ auth: true, message: "Password succesfully changed." });
 });
@@ -443,15 +420,9 @@ router.delete("/deleteUser", async (req, res) => {
 
   let userId = user._id;
 
-  let deletedUser = await User.findByIdAndDelete(userId).then(
-    (alreadyDeleted) => {
-      return alreadyDeleted;
-    }
-  );
+  let deletedUser = await User.findByIdAndDelete(userId);
 
-  let users = await User.find().then((allUsers) => {
-    return allUsers;
-  });
+  let users = await User.find();
 
   users.forEach((eachUser) => {
     let followingArr = eachUser.following;
@@ -459,18 +430,14 @@ router.delete("/deleteUser", async (req, res) => {
       if (userId.toString() == followedUserId.toString()) {
         User.findByIdAndUpdate(eachUser._id, {
           $pull: { following: userId },
-        }).then((updatedUser) => {});
+        });
       } else {
       }
     });
   });
 
   deletedUser.recipes.forEach(async (recipeId) => {
-    let recipe = await Recipe.findByIdAndDelete(recipeId).then(
-      (deletedRecipe) => {
-        return deletedRecipe;
-      }
-    );
+    let recipe = await Recipe.findByIdAndDelete(recipeId);
 
     users.forEach(async (eachUser) => {
       let foundFavourite = eachUser.favourites.find((favourite) => {
@@ -479,7 +446,7 @@ router.delete("/deleteUser", async (req, res) => {
       if (foundFavourite != undefined) {
         await User.findByIdAndUpdate(eachUser._id, {
           $pull: { favourites: recipe._id },
-        }).then((updatedUser) => {});
+        });
       }
     });
   });

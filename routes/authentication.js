@@ -37,11 +37,7 @@ authRoutes.post("/signup", async (req, res) => {
     return;
   }
 
-  let foundUser = await User.findOne({ username: user }).then(
-    (repeatedUser) => {
-      return repeatedUser;
-    }
-  );
+  let foundUser = await User.findOne({ username: user });
 
   if (foundUser != null) {
     res.send({
@@ -59,17 +55,6 @@ authRoutes.post("/signup", async (req, res) => {
     password: hashPass,
     recipes: [],
   })
-    .then((createdUser) => {
-      return createdUser;
-    })
-    .catch((error) => {
-      res.send({
-        auth: false,
-        token: null,
-        message: `We have the following error: ${error}`,
-      });
-      return;
-    });
 
   const newToken = jwt.sign({ id: newUser._id }, process.env.SECRET_WORD, {
     expiresIn: expirationTime,
@@ -94,9 +79,7 @@ authRoutes.post("/login", async (req, res) => {
     return;
   }
 
-  let user = await User.findOne({ username: name }).then((foundUser) => {
-    return foundUser;
-  });
+  let user = await User.findOne({ username: name });
 
   if (!user) {
     res.send({
