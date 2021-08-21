@@ -54,7 +54,7 @@ authRoutes.post("/signup", async (req, res) => {
     username: user,
     password: hashPass,
     recipes: [],
-  })
+  });
 
   const newToken = jwt.sign({ id: newUser._id }, process.env.SECRET_WORD, {
     expiresIn: expirationTime,
