@@ -5,7 +5,7 @@ const recipeSchema = new Schema(
   {
     name: String,
     country: String,
-    ingredients: Array,
+    ingredients: String,
     preparation: String,
     creator: { type: Schema.Types.ObjectId, ref: "User" },
   },
