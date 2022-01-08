@@ -31,7 +31,7 @@ Con JSON Web Token o JWT crearemos un token de autenticación que enviaremos al 
 
 El módulo CORS (cross-origin resource sharing) nos permite gestionar qué clientes van a tener acceso la API.
 
-### ¿Qué me ha aportado el desarrollo de esta API?
+## ¿Qué me ha aportado el desarrollo de esta API?
 
 Esta aplicación es el back-end más complejo que he desarrollado hasta la fecha.
 La gestión de la contraseñas, autenticacines y sesiones se hace secilla gracias a Bcrypt y JSON Web Token y la comunicación con la base de datos por medio de modelos no supone un problema ya que Mongoose nos facilita enormemente la tarea.
