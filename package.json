@@ -1,5 +1,5 @@
 {
-  "name": "recipes-network",
+  "name": "recipes",
   "version": "1.0.0",
   "description": "recipes-network-application",
   "main": "app.js",
