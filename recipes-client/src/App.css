@@ -1,0 +1,349 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html {
+  font-size: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  background: rgb(72, 189, 72);
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: green;
+}
+
+.kalam-font {
+  font-family: "Kalam", cursive;
+}
+
+.white-font {
+  color: white;
+}
+
+.red-font {
+  color: red;
+}
+
+.big-font {
+  font-size: 3rem;
+}
+
+.medium-font {
+  font-size: 2rem;
+}
+
+.little-font {
+  font-size: 1.2rem;
+}
+
+.bold-font {
+  font-weight: bold;
+}
+
+.margin-left-2 {
+  margin-left: 1rem;
+}
+
+.margin-right-1 {
+  margin-left: 1rem;
+}
+
+.margin-bottom-1-dot-2 {
+  margin-bottom: 1.2rem;
+}
+
+.margin-bottom-1-dot-5 {
+  margin-bottom: 1.5rem;
+}
+
+.margin-bottom-2-dot-5 {
+  margin-bottom: 2.5rem;
+}
+
+.margin-bottom-4 {
+  margin-bottom: 4rem;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.hundred-per-cent-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  text-align: center;
+}
+
+@media (max-width: 550px) {
+  .title-container {
+    width: 60%;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: green;
+  padding: 2rem;
+}
+
+@media (min-width: 900px) {
+  .form {
+    width: 25rem;
+  }
+}
+
+@media (min-width: 500) and (max-width: 800px) {
+  .form {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 499px) {
+  .form {
+    width: 80%;
+  }
+}
+
+.form-input {
+  width: 80%;
+}
+
+.button {
+  padding: 0.5rem;
+  background: green;
+}
+
+.white-border-radius {
+  border: 2px solid white;
+  border-radius: 1rem;
+}
+
+.session-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12rem;
+  padding-bottom: 12rem;
+}
+
+@media (min-width: 1000px) {
+  .session-container {
+    padding-right: 10rem;
+    padding-left: 10rem;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 999px) {
+  .session-container {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
+
+.long-form-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rem 0rem;
+  width: 100%;
+}
+
+.message-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 5rem;
+}
+
+.light-green-bg {
+  background: rgb(72, 189, 72);
+}
+
+.form-message-container {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-height-2 {
+  line-height: 2rem;
+}
+
+.option-container {
+  display: flex;
+  justify-content: center;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 1000px) {
+  .options-container {
+    width: 35rem;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 999px) {
+  .options-container {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 649px) {
+  .options-container {
+    width: 15rem;
+  }
+}
+
+.link {
+  padding: 0.5rem;
+  border: 2px solid white;
+  border-radius: 1rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.option-link {
+  background: blue;
+}
+
+.delete-link {
+  background: red;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 400px) {
+  .buttons-container {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 399px) {
+  .buttons-container {
+    width: 9rem;
+  }
+}
+
+.confirmation-button {
+  padding: 0.5rem;
+  color: white;
+  border: 2px solid white;
+  border-radius: 0.7rem;
+}
+
+.follow-img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.following-button {
+  background: transparent;
+  border-color: transparent;
+}
+
+@media (min-width: 900px) {
+  .settings-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 899px) {
+  .settings-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media (max-width: 699px) {
+  .settings-container {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.settings-link {
+  padding: 1rem;
+  border: 2px solid white;
+  border-radius: 1rem;
+  color: white;
+  width: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
